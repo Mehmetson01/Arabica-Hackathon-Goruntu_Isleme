@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.env
+
+# Modeller
+models/*.pt
+models/*.pth
+models/*.onnx
+
+# Videolar (GitHub 100MB sınırına takılmamak için)
+*.mp4
+*.avi
+*.mkv
+
+# Sistem
+.DS_Store
+Thumbs.db

@@ -1,0 +1,1 @@
+--invert --min-track-frames 4 --imgsz 1280 --conf 0.20

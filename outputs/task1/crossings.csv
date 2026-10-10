@@ -1,0 +1,11 @@
+﻿track_id,direction,frame,time,det_conf,gender,gender_conf,gender_samples,crop
+12,CIKIS,138,00:00:05.520,0.84,Erkek,0.914,25,crops/person_12.jpg
+24,CIKIS,414,00:00:16.560,0.86,Kadin,0.986,25,crops/person_24.jpg
+34,GIRIS,586,00:00:23.440,0.858,Erkek,0.857,25,crops/person_34.jpg
+44,CIKIS,942,00:00:37.680,0.768,Erkek,0.829,25,crops/person_44.jpg
+52,CIKIS,971,00:00:38.840,0.878,Erkek,0.828,25,crops/person_52.jpg
+52,GIRIS,1103,00:00:44.120,0.891,Erkek,0.828,25,crops/person_52.jpg
+73,GIRIS,1544,00:01:01.760,0.782,Kadin,0.761,25,crops/person_73.jpg
+78,GIRIS,1602,00:01:04.080,0.591,Kadin,0.634,25,crops/person_78.jpg
+99,GIRIS,1930,00:01:17.200,0.89,Erkek,0.879,25,crops/person_99.jpg
+97,GIRIS,1936,00:01:17.440,0.839,Erkek,0.811,25,crops/person_97.jpg

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Youreye Vision Dashboard | Kişi & Araç Analitiği</title>
+  <meta name="description" content="Arabica × Youreye Hackathon: kafe kişi sayımı, cinsiyet tahmini, şehir girişi araç sayımı ve plaka tanıma sonuç paneli.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-orb orb1"></div><div class="bg-orb orb2"></div><div class="bg-orb orb3"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo-eye"><span></span></div>
+      <div>
+        <div class="brand-title">YOUREYE <b>VISION</b></div>
+        <div class="brand-sub">Arabica × Youreye Hackathon · Kayseri · 10.10.2026</div>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button id="tab-overview" class="tab active" data-target="overview">Genel Bakış</button>
+      <button id="tab-task1" class="tab" data-target="task1">Görev 1 · Kafe</button>
+      <button id="tab-task2" class="tab" data-target="task2">Görev 2 · Şehir Girişi</button>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="sr-only">Kişi ve Araç Analitiği Sonuç Paneli</h1>
+
+    <!-- GENEL BAKIŞ -->
+    <section id="overview" class="view active">
+      <div class="hero glass">
+        <div>
+          <p class="eyebrow">Gerçek saha senaryoları · YOLO11 + ByteTrack + CLIP + EasyOCR</p>
+          <h2>İki görev, tek görüntü işleme platformu</h2>
+          <p class="muted">Kafe girişinde kişi sayımı ve cinsiyet tahmini; şehir girişinde araç sayımı, araç türü ve plaka tanıma. Tüm sonuçlar takip ID'leriyle, güven skorlarıyla ve dışa aktarılabilir kayıtlarla.</p>
+        </div>
+        <div class="hero-stats" id="hero-stats"></div>
+      </div>
+      <div class="grid2">
+        <article class="glass card-link" data-goto="task1" id="ov-task1">
+          <div class="card-head"><span class="pill pill-cyan">Görev 1</span><span class="muted" id="ov1-fps"></span></div>
+          <h3>Kafe Kişi Sayımı & Cinsiyet</h3>
+          <div class="kpi-row" id="ov1-kpis"></div>
+        </article>
+        <article class="glass card-link" data-goto="task2" id="ov-task2">
+          <div class="card-head"><span class="pill pill-amber">Görev 2</span><span class="muted" id="ov2-fps"></span></div>
+          <h3>Şehir Girişi Araç & Plaka</h3>
+          <div class="kpi-row" id="ov2-kpis"></div>
+        </article>
+      </div>
+      <div class="glass pipeline">
+        <h3>Sistem Mimarisi</h3>
+        <div class="flow">
+          <div class="node">Video<br><small>OpenCV · thread'li okuma</small></div><i></i>
+          <div class="node">YOLO11<br><small>kişi / araç tespiti</small></div><i></i>
+          <div class="node">ByteTrack<br><small>takip ID</small></div><i></i>
+          <div class="node">Sanal Çizgi<br><small>yönlü sayım</small></div><i></i>
+          <div class="node split">CLIP cinsiyet<br><small>track oylaması</small><hr>Plaka YOLO → EasyOCR<br><small>TR doğrulama</small></div><i></i>
+          <div class="node">Çıktı<br><small>Video · CSV · JSON</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GÖREV 1 -->
+    <section id="task1" class="view">
+      <div class="empty glass" id="t1-empty">Görev 1 sonuçları bulunamadı. <code>run_task1.ps1</code> çalıştırın.</div>
+      <div id="t1-content">
+        <div class="kpis" id="t1-kpis"></div>
+        <div class="grid-video">
+          <div class="glass video-card">
+            <div class="card-head"><h3>İşlenmiş Video</h3><span class="pill pill-cyan" id="t1-fps"></span></div>
+            <video id="t1-video" controls muted playsinline></video>
+          </div>
+          <div class="glass">
+            <h3>Cinsiyet Dağılımı <small class="muted">(çizgiden geçenler)</small></h3>
+            <canvas id="t1-donut" width="320" height="240"></canvas>
+            <div class="legend" id="t1-legend"></div>
+            <p class="note" id="t1-disclaimer"></p>
+          </div>
+        </div>
+        <div class="glass">
+          <h3>Zaman Çizelgesi</h3>
+          <canvas id="t1-timeline" class="timeline" height="220"></canvas>
+        </div>
+        <div class="glass">
+          <div class="card-head"><h3>Geçiş Kayıtları</h3>
+            <a class="btn" id="t1-csv" download>CSV indir</a></div>
+          <div class="table-wrap"><table id="t1-table"><thead><tr>
+            <th>Görsel</th><th>Zaman</th><th>ID</th><th>Yön</th><th>Cinsiyet</th><th>Cinsiyet güveni</th><th>Tespit güveni</th>
+          </tr></thead><tbody></tbody></table></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GÖREV 2 -->
+    <section id="task2" class="view">
+      <div class="empty glass" id="t2-empty">Görev 2 sonuçları bulunamadı. <code>run_task2.ps1</code> çalıştırın.</div>
+      <div id="t2-content">
+        <div class="kpis" id="t2-kpis"></div>
+        <div class="grid-video">
+          <div class="glass video-card">
+            <div class="card-head"><h3>İşlenmiş Video</h3><span class="pill pill-amber" id="t2-fps"></span></div>
+            <video id="t2-video" controls muted playsinline></video>
+          </div>
+          <div class="glass">
+            <h3>Araç Türleri</h3>
+            <canvas id="t2-bars" width="320" height="260"></canvas>
+          </div>
+        </div>
+        <div class="glass">
+          <h3>Zaman Çizelgesi</h3>
+          <canvas id="t2-timeline" class="timeline" height="220"></canvas>
+        </div>
+        <div class="glass">
+          <div class="card-head"><h3>Araç & Plaka Kayıtları</h3>
+            <div class="tools">
+              <input id="t2-search" placeholder="Plaka / ID / tür ara…" autocomplete="off">
+              <a class="btn" id="t2-csv" download>CSV</a>
+              <a class="btn" id="t2-json" download>JSON</a>
+            </div></div>
+          <div class="table-wrap"><table id="t2-table"><thead><tr>
+            <th>Araç</th><th>Plaka</th><th>Zaman</th><th>ID</th><th>Yön</th><th>Tür</th><th>Plaka metni</th><th>OCR güveni</th><th>Plaka tespit</th><th>Araç güveni</th><th>Durum</th>
+          </tr></thead><tbody></tbody></table></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">Cinsiyet çıktıları görsel model tahminidir; kesin kimlik/kişisel özellik tespiti değildir ve hata payı içerir.</footer>
+
+  <div id="lightbox" class="lightbox"><img id="lightbox-img" alt="Büyütülmüş görsel"></div>
+
+  <script src="data/task1.js"></script>
+  <script src="data/task2.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

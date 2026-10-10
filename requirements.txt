@@ -1,0 +1,11 @@
+# PyTorch (CUDA 12.4) ayrıca kurulur:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
+ultralytics>=8.3.0
+opencv-python>=4.9
+numpy<2.3
+lap>=0.5.12
+transformers>=4.44
+easyocr>=1.7.1
+imageio-ffmpeg>=0.5.1
+pillow
+tqdm
