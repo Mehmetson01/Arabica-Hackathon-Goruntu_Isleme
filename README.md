@@ -1,10 +1,10 @@
-# Arabica × Youreye Hackathon Projesi 🚀
+# Arabica × Youreye Hackathon Projesi 
 
 Bu proje, hackathon kapsamında istenen iki temel görüntü işleme görevini (Kafe içi kişi/cinsiyet analizi ve Şehir girişi araç/plaka analizi) çözmek amacıyla geliştirilmiş, **uçtan uca çalışan bir yapay zeka ve bilgisayarlı görü** sistemidir.
 
 ---
 
-## 🧠 Kullandığımız Model ve Kütüphanelerin Kısa Açıklaması
+##  Kullandığım Model ve Kütüphanelerin Kısa Açıklaması
 
 Proje mimarisinde hız ve yüksek doğruluğu bir araya getiren "State-of-the-Art" (SOTA) modeller tercih edilmiştir:
 
@@ -17,7 +17,7 @@ Proje mimarisinde hız ve yüksek doğruluğu bir araya getiren "State-of-the-Ar
 
 ---
 
-## ⚙️ Teknik Özet (Mimari)
+##  Teknik Özet (Mimari)
 
 Sistem tamamen asenkron okuma yapabilen `ThreadedVideoReader` altyapısı üzerine kurulmuştur. 
 * **Görev 1:** Vücut merkezinden (center) veya ayaklardan (bottom) referans alarak vektörel hesaplamayla (Cross Product) sanal bir çizgi üzerinden geçenleri Giriş/Çıkış olarak sayar. Tespit edilen kişilerin resimleri kırpılarak anlık olarak cinsiyet oylamasına sokulur.
@@ -25,7 +25,7 @@ Sistem tamamen asenkron okuma yapabilen `ThreadedVideoReader` altyapısı üzeri
 
 ---
 
-## ⚠️ Bilinen Hatalar, Kısıtlar ve Geliştirme Önerileri
+##  Bilinen Hatalar, Kısıtlar ve Geliştirme Önerileri
 
 ### Kısıtlar & Bilinen Hatalar:
 * **Aşırı Kalabalık ve Kapanma (Occlusion):** Kamera açısının yatay olmasından ötürü, insanların veya araçların üst üste binmesi (birinin diğerini kapatması) durumunda takip (tracking) kayıpları yaşanabilmektedir.
@@ -39,4 +39,4 @@ Sistem tamamen asenkron okuma yapabilen `ThreadedVideoReader` altyapısı üzeri
 
 ---
 **Emeği Geçenler:** 
-Proje geliştirilirken yapay zekanın sunduğu vizyoner algoritmalar ile gerçek dünyanın kaotik verileri arasında köprü kurulmuştur. Fikirler daima daha güzeldir! ☕💡
+Proje geliştirilirken yapay zekanın sunduğu vizyoner algoritmalar ile gerçek dünyanın kaotik verileri arasında köprü kurulmuştur.
